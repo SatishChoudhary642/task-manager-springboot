@@ -3,7 +3,8 @@
         <title>Welcome Page</title>
     </head>
     <body>
-        <div>Welcome</div>
-        <div>Your name: ${name}</div>
+        <div>Welcome ${name}</div>
+        <hr>
+        <a href="http://localhost:8081/list-todos">Manage your task</a>
     </body>
 </html>
