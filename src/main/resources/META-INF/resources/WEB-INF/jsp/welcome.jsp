@@ -1,10 +1,11 @@
 <html>
-    <head>
-        <title>Welcome Page</title>
-    </head>
-    <body>
-        <div>Welcome ${name}</div>
-        <hr>
-        <a href="http://localhost:8081/list-todos">Manage your task</a>
-    </body>
+  <head>
+    <title>Welcome Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome ${name}</h1>
+      <a href="http://localhost:8081/list-todos">Manage your task</a>
+    </div>
+  </body>
 </html>
