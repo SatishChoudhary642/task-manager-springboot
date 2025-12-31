@@ -13,30 +13,33 @@ import jakarta.validation.Valid;
 public class TodoService {
     private static List<Todo> todos = new ArrayList<>();
 
-    private static int todosCount=0;
+    private static int todosCount = 0;
 
-    static{
+    static {
         todos.add(new Todo(++todosCount, "Satish", "Learn SpringBoot", LocalDate.now().plusMonths(3), false));
         todos.add(new Todo(++todosCount, "Satish", "Learn LLD HLD", LocalDate.now().plusMonths(6), false));
         todos.add(new Todo(++todosCount, "Satish", "Master DSA", LocalDate.now().plusMonths(3), false));
     }
 
-    public List<Todo> findByUsername(String username){
-        return todos;
+    public List<Todo> findByUsername(String username) {
+
+        Predicate<? super Todo> predicate = todo -> todo.getUsername().equalsIgnoreCase(username);
+
+        return todos.stream().filter(predicate).toList();
     }
 
-    public void addTodo(String username, String description, LocalDate targetDate, Boolean done){
+    public void addTodo(String username, String description, LocalDate targetDate, Boolean done) {
         Todo todo = new Todo(++todosCount, username, description, targetDate, done);
         todos.add(todo);
     }
 
-    public void deleteById(int id){
-        Predicate<? super Todo> predicate = todo -> todo.getId()==id;
+    public void deleteById(int id) {
+        Predicate<? super Todo> predicate = todo -> todo.getId() == id;
         todos.removeIf(predicate);
     }
 
     public Todo findById(int id) {
-        Predicate<? super Todo> predicate = todo -> todo.getId()==id;
+        Predicate<? super Todo> predicate = todo -> todo.getId() == id;
         Todo todo = todos.stream().filter(predicate).findFirst().get();
         return todo;
     }
